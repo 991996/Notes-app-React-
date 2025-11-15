@@ -48,19 +48,22 @@ function App() {
             <h1 className="text-gray-900 font-bold text-4xl">Notes</h1>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 min-h-[70%]">
-              {notes.map((n) => {
-                return (
-                  <NoteCard
-                    key={n.id}
-                    note={n}
-                    onClickDelete={() => handleOpenDialog(n.id, "delete")}
-                    onClickUpdate={() => {
-                      setUpdatedNote(n);
-                      handleOpenDialog(n.id, "edit");
-                    }}
-                  />
-                );
-              })}
+              {notes
+                .slice()
+                .reverse()
+                .map((n) => {
+                  return (
+                    <NoteCard
+                      key={n.id}
+                      note={n}
+                      onClickDelete={() => handleOpenDialog(n.id, "delete")}
+                      onClickUpdate={() => {
+                        setUpdatedNote(n);
+                        handleOpenDialog(n.id, "edit");
+                      }}
+                    />
+                  );
+                })}
             </div>
           </div>
         </div>
